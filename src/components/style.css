@@ -1,0 +1,118 @@
+#root {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "poppins", sans-serif;
+}
+.login-form {
+  position: relative;
+  height: 90vh;
+  z-index: 0;
+  background: #f5f2f2;
+  padding: 30px;
+  justify-content: center;
+  display: grid;
+  font-family: "poppins", sans-serif;
+  grid-template-rows: 1fr auto 1fr;
+  align-items: center;
+}
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+i#icon {
+  font-size: 26px;
+  padding: 5px;
+}
+.login-form .main {
+  position: relative;
+  display: flex;
+  margin: 30px 0;
+}
+.content {
+  flex-basis: 50%;
+  padding: 3em 3em;
+  background: #fff;
+  box-shadow: 2px 9px 49px -17px rgba(0, 0, 0, 0.1);
+}
+.form-right {
+  flex-basis: 50%;
+  background: #d71e53;
+  padding: 64px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+
+  max-width: 100%;
+}
+.checkbox {
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  align-items: center;
+}
+label#remember {
+  color: red;
+}
+h3#p-text {
+  color: white;
+  font-size: 15px;
+  align-items: center;
+  align-content: center;
+  padding: 0 48px;
+}
+h1#r-heding {
+  color: white;
+}
+.btn,
+button,
+input {
+  border-radius: 35px;
+}
+
+.login-form form {
+  margin: 30px 0;
+}
+input[type="password"] {
+  outline: none;
+  margin-bottom: 15px;
+  font-stretch: 16px;
+  color: #999;
+  text-align: left;
+  padding: 14px 20px;
+  width: 100%;
+  display: inline-block;
+  box-sizing: border-box;
+  border: none;
+  background: #f7fafc;
+}
+input[type="text"] {
+  outline: none;
+  margin-bottom: 15px;
+  font-stretch: 16px;
+  color: #999;
+  text-align: left;
+  padding: 14px 20px;
+  width: 100%;
+  display: inline-block;
+  box-sizing: border-box;
+  border: none;
+  background: #f7fafc;
+}
+
+.login-form button {
+  font-size: 18px;
+  color: #fff;
+  width: 100%;
+  background: #d22343;
+  border: none;
+  padding: 14px 15px;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
