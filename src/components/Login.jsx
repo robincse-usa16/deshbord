@@ -1,37 +1,61 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./style.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import Loading from "./Loading";
+import { jwtDecode } from "jwt-decode";
 
 function Login() {
-  const [fname, setFname] = useState("");
-  const [password, setPassword] = useState("");
-
-  // function saveData() {
-  //   // console.warn({ fname, password });
-  //   let data = { fname, password };
-  //   fetch("http://localhost:5174/", {
-  //     method: "POST",
-  //     headers: {
-  //       Accept: "application/json",
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(data),
-  //   }).then((result) => {
-  //     console.warn("result", result);
-  //   });
-  // }
-
-  useEffect(() => {
-    axios
-      .get("https://jsonplaceholder.typicode.com/todos/")
-      .then((result) => console.log("result", result.data));
-  }, []);
-
-  function saveData() {
-    console.log({ fname, password });
+  const url = "https://dev-api.rockstreamer.com/auth/authenticate";
+  const [data, setData] = useState({
+    fname: "",
+    password: "",
+  });
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+  function handle(e) {
+    e.preventDefault();
+    const newdata = { ...data };
+    newdata[e.target.id] = e.target.value;
+    setData(newdata);
+    console.log(newdata);
   }
+  function singIn(e) {
+    e.preventDefault();
+    setError("");
+
+    if (!data.fname || !data.password) {
+      setError("Filled Up Username or Password!");
+      return;
+    }
+    setIsLoading(true);
+    axios
+      .post(url, {
+        username: data.fname,
+        password: data.password,
+      })
+      .then((response) => {
+        const token = response.data.token;
+        const decodedToken = jwtDecode(token);
+        localStorage.setItem("token", token);
+        localStorage.setItem("tokenExpiry", decodedToken.exp);
+        console.log("Login successfull:", response.data);
+        navigate("/");
+      })
+      .catch((error) => {
+        if (error.response && error.response.status === 401) {
+          setError("Incorrect email or password");
+        }
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }
+
   return (
     <div className="login-form">
+      {isLoading && <Loading />}
       <div className="container">
         <div className="main">
           <div className="content">
@@ -42,28 +66,30 @@ function Login() {
                 <i id="icon" className="fa-brands fa-twitter"></i>
               </div>
             </div>
-            <form action="#" method="post">
+            <form onSubmit={(e) => singIn(e)}>
               <label htmlFor="fname">username</label>
               <input
                 type="text"
-                value={fname}
-                onChange={(e) => {
-                  setFname(e.target.value);
-                }}
+                value={data.fname}
+                onChange={(e) => handle(e)}
                 id="fname"
                 placeholder="Username"
               />
               <label htmlFor="password">password</label>
               <input
                 type="password"
-                value={password}
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                }}
+                value={data.password}
+                onChange={(e) => handle(e)}
                 id="password"
                 placeholder="Password"
               />
-              <button className="btn" type="button" onClick={saveData}>
+              <p className="error">{error}</p>
+              <button
+                id="signIn"
+                className="btn"
+                type="button"
+                onClick={singIn}
+              >
                 Sign in
               </button>
             </form>

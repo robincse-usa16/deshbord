@@ -1,0 +1,146 @@
+.main-content {
+  margin-left: 210px;
+  box-sizing: border-box;
+  transition: margin-left 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.main-content.expanded {
+  margin-left: 0;
+}
+h2.top-content {
+  padding: 0px 20px;
+}
+p.text-dashboard {
+  padding: 0px 20px;
+}
+.cards-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.card {
+  flex: 1;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  color: #888;
+  font-size: 14px;
+}
+
+.card-body {
+  margin-top: 15px;
+}
+
+.card-body h3 {
+  margin: 0;
+  font-size: 24px;
+  color: #333;
+}
+
+.card-body .status {
+  font-size: 15px;
+  color: #4caf50;
+  margin-top: 5px;
+}
+
+.charts-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.chart-placeholder {
+  flex: 1;
+  height: 250px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 0px 20px;
+}
+
+.projects-orders {
+  display: flex;
+  gap: 20px;
+  padding: 10px 20px;
+}
+
+.projects-section {
+  flex: 2;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.orders-section {
+  flex: 1;
+  background-color: #fff;
+  padding: 6px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.projects-section h3,
+.orders-section h3 {
+  margin-bottom: 15px;
+  color: #333;
+}
+@media screen and (max-width: 768px) {
+  .main-content {
+    margin-left: 0;
+  }
+
+  .main-content.expanded {
+    margin-left: 0;
+  }
+
+  .cards-section {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  .card {
+    max-width: 100%;
+  }
+  .charts-section {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .chart {
+    max-width: 100%;
+  }
+}
+@media screen and (max-width: 480px) {
+  .cards-section {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .card {
+    padding: 10px;
+  }
+  .charts-section {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .chart {
+    padding: 10px;
+    box-sizing: border-box;
+  }
+}
+.charts-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}

@@ -8,7 +8,7 @@ function PostApi() {
   function saveUser() {
     console.log({ name, email, password });
     let data = { name, email, password };
-    fetch("https://jsonplaceholder.typicode.com/todos/1", {
+    fetch("https://dev-api.rockstreamer.com/auth/authenticate", {
       method: "POST",
       headers: {
         Accept: "application/json",
